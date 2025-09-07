@@ -86,3 +86,118 @@ POST /api/transactions
 GET /api/reports/inventory
 
 GET /api/reports/transactions
+
+
+**API Documentation**
+
+**POST /register**
+
+Request body:
+{
+  "username": "your_username",
+  "email": "youremail@example.com",
+  "password": "yourpassword"
+}
+Response:
+{
+  "message": "User registered successfully"
+}
+```
+
+**Login**
+
+```
+**POST /login**
+
+Request body:
+{
+  "email": "youremail@example.com",
+  "password": "yourpassword"
+}
+Response:
+{
+  "token": "your_jwt_token"
+}
+
+
+Logout
+
+```
+GET /logout
+Header: Authorization: Bearer <token>
+Response:
+{
+  "message": "Logged out successfully"
+}
+```
+
+---
+
+### **Products**
+
+* **Get all products**: `GET /products`
+* **Add a product**: `POST /products`
+* **Update a product**: `PUT /products/:id`
+* **Delete a product**: `DELETE /products/:id`
+
+**Example request body for POST/PUT:**
+
+```json
+{
+  "name": "Product Name",
+  "description": "A short description",
+  "price": 100,
+  "stock": 20,
+  "category": "Category Name"
+}
+```
+
+---
+
+### **Customers & Vendors**
+
+* **Get all contacts**: `GET /contacts`
+* **Add a contact**: `POST /contacts`
+* **Update a contact**: `PUT /contacts/:id`
+* **Delete a contact**: `DELETE /contacts/:id`
+
+**Example request body:**
+
+```json
+{
+  "name": "John Doe",
+  "phone": "1234567890",
+  "email": "john@example.com",
+  "address": "123 Street, City",
+  "type": "customer"
+}
+```
+
+---
+
+### **Transactions**
+
+* **Get all transactions**: `GET /transactions`
+* **Create a transaction**: `POST /transactions`
+
+**Example request body:**
+
+```json
+{
+  "type": "sale",
+  "customerId": "CUSTOMER_ID",
+  "products": [
+    { "productId": "PRODUCT_ID", "quantity": 2, "price": 100 }
+  ],
+  "totalAmount": 200
+}
+```
+
+> For purchases, replace `customerId` with `vendorId` and `type` with `"purchase"`.
+
+---
+
+### **Reports**
+
+* **Inventory report**: `GET /reports/inventory` – Shows current stock levels
+* **Transactions report**: `GET /reports/transactions?type=sale&date=YYYY-MM-DD` – Filter by type and/or date

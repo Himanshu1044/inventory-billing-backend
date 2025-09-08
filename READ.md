@@ -201,3 +201,5 @@ Response:
 
 * **Inventory report**: `GET /reports/inventory` – Shows current stock levels
 * **Transactions report**: `GET /reports/transactions?type=sale&date=YYYY-MM-DD` – Filter by type and/or date
+
+**This is edited by iota**
